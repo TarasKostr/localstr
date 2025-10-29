@@ -1,0 +1,25 @@
+.js-form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: purple;
+    width: 400px;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+}
+
+.js-btn{
+    height: 50px;
+    background-color: green;
+    color: whitesmoke;
+    font-size: 24px;
+    border-radius: 10px;
+}
