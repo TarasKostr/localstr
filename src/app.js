@@ -9,6 +9,8 @@ const del = document.querySelector(".js-del")
 
 const contacts = JSON.parse(localStorage.getItem("contacts")) || []
 
+let editIndex = null
+
 form.addEventListener("submit", (event) => {
     event.preventDefault()
 
@@ -44,27 +46,29 @@ function removeItem(idx){
     storage()
 }
 
-// function back2edit(opt){
-//     nameInp.value = opt.name
-//     surnameInp.value = opt.surname
-//     phoneInp.value = opt.phone
-//     emailInp.value = opt.email
-// }
-
 list.addEventListener("click", (event) => {
     if (event.target.classList.contains("js-edit")){
         const li = event.target.closest("li")
         const idx = li.dataset.idx
-        // removeItem(idx)
-        console.log(li)
-        const opt = contacts[idx]
-        // back2edit(opt)
+        editItem(idx)
+        removeItem(idx)
     }
 })
 
+function editItem(idx) {
+  const contact = contacts[idx];
+  nameInp.value = contact.name;
+  surnameInp.value = contact.surname;
+  phoneInp.value = contact.phone;
+  emailInp.value = contact.email;
+
+  editIndex = idx;
+  console.log(editIndex, contact)
+}
+
 function render(array){
-    list.innerHTML = array.map(({name,surname,phone,email}) => {
-        return `<li>
+    list.innerHTML = array.map(({name,surname,phone,email}, index) => {
+        return `<li data-idx="${index}">
             <p>Name: ${name}</p>
             <p>Surname: ${surname}</p>
             <p>Phone number: ${phone}</p>
